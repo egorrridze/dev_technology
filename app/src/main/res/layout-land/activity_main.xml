@@ -10,32 +10,29 @@
         android:id="@+id/choice1"
         android:layout_width="200sp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="68dp"
-        app:layout_constraintBottom_toTopOf="@+id/number_input"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintBottom_toBottomOf="@+id/number_input"
+        app:layout_constraintEnd_toStartOf="@+id/number_input"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/number_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="200dp"
+        android:layout_marginBottom="44dp"
         android:ems="10"
         android:text=""
         app:layout_constraintBottom_toTopOf="@+id/convert_button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
         android:id="@+id/choice2"
         android:layout_width="200sp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        app:layout_constraintBottom_toBottomOf="@+id/number_input"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/number_input" />
+        app:layout_constraintStart_toEndOf="@+id/number_input" />
 
     <Button
         android:id="@+id/convert_button"
@@ -46,5 +43,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.762" />
+        app:layout_constraintVertical_bias="0.756" />
 </androidx.constraintlayout.widget.ConstraintLayout>
