@@ -3,6 +3,7 @@ package ru.practice.dev_technology;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         convertButton = findViewById(R.id.convert_button);
         convertButton.setOnClickListener(clickListener);
         inputNum = findViewById(R.id.number_input);
+        inputNum.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 
 
     }
