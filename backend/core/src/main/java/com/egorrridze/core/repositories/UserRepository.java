@@ -8,5 +8,8 @@ import java.util.Optional;
 
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
-	
+    /*  @Override
+    default Optional<User> findById(Long aLong) {
+        return Optional.empty();
+    };*/
 }
