@@ -1,7 +1,6 @@
 package ru.practice.dev_technology;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
@@ -9,35 +8,45 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+    /**Spinners to choose value types from */
     Spinner choice1, choice2;
+
+    /**Button for starting converting process */
     Button convertButton;
+
+    /**Field for number input*/
     EditText inputNum;
+
+    /**ClickListener to process user clicks */
     View.OnClickListener clickListener;
 
-//    заглушка
+    /**Test array */
     String[] data = {"one", "two", "three", "four", "five"};
 
+    /**
+     * create main converter activity
+     * @param savedInstanceState saved variables from previous activity launch
+     */
+    @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        clickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switch (v.getId()){
-                    case R.id.convert_button:
-                        Toast toast = Toast.makeText(getApplicationContext(),
-                                "It works!",
-                                Toast.LENGTH_SHORT);
-                        toast.show();
-                        break;
-                }
+        clickListener = v -> {
+            switch (v.getId()){
+                case R.id.convert_button:
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            "It works!",
+                            Toast.LENGTH_SHORT);
+                    toast.show();
+                    break;
             }
         };
 
