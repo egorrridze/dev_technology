@@ -12,6 +12,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/** Represents main converter activity.
+ * @author SmokedKoala
+ * @version 0.0.1
+ * @since 0.0.1
+ */
 public class MainActivity extends AppCompatActivity {
 
     /**Spinners to choose value types from */
