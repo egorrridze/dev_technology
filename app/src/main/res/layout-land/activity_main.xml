@@ -19,14 +19,21 @@
         tools:layout_editor_absoluteY="16dp"
         app:headerLayout="@layout/header"
         app:menu="@menu/main_menu"
-        android:layout_gravity="start"/>
+        android:layout_gravity="start">
+
+    </com.google.android.material.navigation.NavigationView>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-    <Spinner
+        <Spinner
         android:id="@+id/choice1"
         android:layout_width="200sp"
         android:layout_height="wrap_content"

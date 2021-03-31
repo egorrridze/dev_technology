@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
-import android.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -36,12 +36,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     EditText inputNum;
     /**Test array */
     String[] data = {"one", "two", "three", "four", "five"};
-    /**Adapters for spinners */
+    /**provide views for an AdapterView, */
     ArrayAdapter<String> spinnerArrayAdapter;
-    /**Drawer layout for navigation view */
+    /**DrawerLayout acts as a top-level container for window content that allows
+     * for interactive "drawer" views to be pulled out from one or both vertical
+     * edges of the window. */
     DrawerLayout drawerLayout;
-    /**Navigation View for menu */
+    /**Represents a standard navigation menu for application */
     NavigationView navigationView;
+    /**This class provides a handy way to tie together the functionality of DrawerLayout  */
+    ActionBarDrawerToggle actionBarDrawerToggle;
+    /**A standard toolbar for use within application content. */
+    Toolbar toolbar;
 
 
     /**
@@ -56,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigation_view);
+        toolbar = findViewById(R.id.toolbar);
+        navigationMenuCreation();
 
         spinnerArrayAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, data);
@@ -70,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         inputNum = findViewById(R.id.number_input);
         inputNum.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 
-        navigationMenuCreation();
+
     }
 
     /**
@@ -117,8 +125,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     public void navigationMenuCreation(){
         navigationView.bringToFront();
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,
-                drawerLayout,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this,
+                drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
