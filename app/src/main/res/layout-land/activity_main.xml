@@ -7,7 +7,7 @@
     tools:context=".MainActivity"
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
-    android:id="@+id/drawer_layout">
+    android:id="@+id/converter_drawer_layout">
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
@@ -24,7 +24,7 @@
     </com.google.android.material.navigation.NavigationView>
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/converter_toolbar"
         android:layout_width="match_parent"
         android:layout_height="200dp">
     </androidx.appcompat.widget.Toolbar>
