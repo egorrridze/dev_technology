@@ -1,30 +1,34 @@
 package ru.practice.dev_technology;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.text.InputType;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 /** Represents main converter activity.
  * @author SmokedKoala
- * @version 0.0.3
- * @since 0.0.1
+ * @version 0.4.0
+ * @since 0.1.0
  */
 public class MainActivity extends Activity {
 
     /**Spinners to choose value types from */
-    Spinner choice1, choice2;
+    private Spinner choice1, choice2;
     /**Button for starting converting process */
-    Button convertButton;
+    private Button convertButton;
     /**Field for number input*/
-    EditText inputNum;
+    private EditText inputNum;
     /**Test array */
-    String[] data = {"one", "two", "three", "four", "five"};
-    /**provide views for an AdapterView, */
-    ArrayAdapter<String> spinnerArrayAdapter;
+    private String[] data = {"one", "two", "three", "four", "five"};
+    /**Provide views for an AdapterView. */
+    private ArrayAdapter<String> spinnerArrayAdapter;
+    /**Shows the converter result */
+    private TextView result;
 
 
 
@@ -46,6 +50,9 @@ public class MainActivity extends Activity {
         convertButton = findViewById(R.id.convert_button);
         convertButton.setOnClickListener(this);
         inputNum = findViewById(R.id.number_input);
+        inputNum.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        result = findViewById(R.id.result);
+
 
         navigationMenuCreation();
 
@@ -54,11 +61,8 @@ public class MainActivity extends Activity {
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         choice1.setAdapter(spinnerArrayAdapter);
         choice2.setAdapter(spinnerArrayAdapter);
-
-        inputNum.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
-
-
     }
+
 
 
 }

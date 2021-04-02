@@ -1,6 +1,7 @@
 package ru.practice.dev_technology;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -14,26 +15,29 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.List;
+import java.util.Set;
+
 
 /** Represents prototype activity for others and controls same methods.
  * @author SmokedKoala
- * @version 0.0.3
- * @since 0.0.3
+ * @version 0.4.0
+ * @since 0.3.0
  */
 public class Activity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     /**DrawerLayout acts as a top-level container for window content that allows
      * for interactive "drawer" views to be pulled out from one or both vertical
      * edges of the window. */
-    DrawerLayout drawerLayout;
+    protected DrawerLayout drawerLayout;
     /**Represents a standard navigation menu for application */
-    NavigationView navigationView;
+    protected NavigationView navigationView;
     /**This class provides a handy way to tie together the functionality of DrawerLayout  */
-    ActionBarDrawerToggle actionBarDrawerToggle;
+    protected ActionBarDrawerToggle actionBarDrawerToggle;
     /**A standard toolbar for use within application content. */
-    Toolbar toolbar;
+    protected Toolbar toolbar;
     /**Is used to keeping checked current activity in menu*/
-    int currentPage;
-
+    protected int currentPage;
+    /**Interface for accessing and modifying preference data returned*/
 
 
     /**
@@ -56,6 +60,7 @@ public class Activity extends AppCompatActivity implements View.OnClickListener,
     /**
      * controls what application have to do if some menu element was pressed
      * @param item menu item
+     * @return true, if menu item was pressed
      */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

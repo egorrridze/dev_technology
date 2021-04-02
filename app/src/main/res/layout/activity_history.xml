@@ -19,7 +19,10 @@
         tools:layout_editor_absoluteY="16dp"
         app:headerLayout="@layout/header"
         app:menu="@menu/main_menu"
-        android:layout_gravity="start"/>
+        android:layout_gravity="start">
+
+
+    </com.google.android.material.navigation.NavigationView>
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/history_toolbar"
@@ -32,8 +35,20 @@
         android:layout_height="match_parent">
 
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-
+        <Button
+            android:id="@+id/del_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear history"
+            app:layout_constraintBottom_toBottomOf="@+id/recyclerView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:padding="10dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
