@@ -80,4 +80,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
     }
 
+    public void clearRecyclerView(){
+        mData.clear();
+        notifyDataSetChanged();
+    }
+
 }

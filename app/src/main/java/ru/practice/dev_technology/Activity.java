@@ -37,7 +37,8 @@ public class Activity extends AppCompatActivity implements View.OnClickListener,
     protected Toolbar toolbar;
     /**Is used to keeping checked current activity in menu*/
     protected int currentPage;
-    /**Interface for accessing and modifying preference data returned*/
+    protected SharedPreferences preferences;
+    protected Set<String> cardData;
 
 
     /**
@@ -46,14 +47,6 @@ public class Activity extends AppCompatActivity implements View.OnClickListener,
      */
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.convert_button:
-                Toast toast = Toast.makeText(getApplicationContext(),
-                        "It works!",
-                        Toast.LENGTH_SHORT);
-                toast.show();
-                break;
-        }
     }
 
 

@@ -1,12 +1,20 @@
 package ru.practice.dev_technology;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 
 /** Represents history activity.
@@ -21,6 +29,7 @@ public class HistoryActivity extends Activity {
 
     protected RecyclerView recyclerView;
     protected RecyclerViewAdapter recyclerViewAdapter;
+    private Button deleteButton;
 
     /**
      * create history activity
@@ -30,10 +39,16 @@ public class HistoryActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
+
+        preferences = getSharedPreferences("converter", Context.MODE_PRIVATE);
+        cardData = preferences.getStringSet("cardData", new HashSet<>());
+
         currentPage = R.id.nav_history;
         drawerLayout = findViewById(R.id.history_drawer_layout);
         navigationView = findViewById(R.id.navigation_view);
         toolbar = findViewById(R.id.history_toolbar);
+        deleteButton = findViewById(R.id.del_history);
+        deleteButton.setOnClickListener(this);
 
         cardFillerList = new ArrayList<>();
         createList();
@@ -45,9 +60,25 @@ public class HistoryActivity extends Activity {
         navigationMenuCreation();
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.del_history:
+                
+                cardData.clear();
+                recyclerViewAdapter.clearRecyclerView();
+
+                System.out.println(cardData);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putStringSet("cardData",cardData);
+                editor.apply();
+                break;
+        }
+    }
+
     private void createList(){
-        for (int i = 0; i<100;i++)
-            cardFillerList.add(new CardFiller("1","см","10","мм"));
+        for (Iterator<String> iterator = cardData.iterator(); iterator.hasNext();)
+            cardFillerList.add(new CardFiller(iterator.next()));
     }
 
 

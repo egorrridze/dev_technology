@@ -2,13 +2,19 @@ package ru.practice.dev_technology;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /** Represents main converter activity.
  * @author SmokedKoala
@@ -25,6 +31,7 @@ public class MainActivity extends Activity {
     private EditText inputNum;
     /**Test array */
     private String[] data = {"one", "two", "three", "four", "five"};
+    private int counter = 0;
     /**Provide views for an AdapterView. */
     private ArrayAdapter<String> spinnerArrayAdapter;
     /**Shows the converter result */
@@ -41,6 +48,10 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        preferences = getSharedPreferences("converter", Context.MODE_PRIVATE);
+        cardData = preferences.getStringSet("cardData", new HashSet<>());
+
         currentPage = R.id.nav_converter;
         drawerLayout = findViewById(R.id.converter_drawer_layout);
         navigationView = findViewById(R.id.navigation_view);
@@ -53,7 +64,6 @@ public class MainActivity extends Activity {
         inputNum.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         result = findViewById(R.id.result);
 
-
         navigationMenuCreation();
 
         spinnerArrayAdapter = new ArrayAdapter<>(this,
@@ -61,6 +71,21 @@ public class MainActivity extends Activity {
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         choice1.setAdapter(spinnerArrayAdapter);
         choice2.setAdapter(spinnerArrayAdapter);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.convert_button:
+
+                cardData.add("result "+ counter);
+                counter++;
+
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putStringSet("cardData",cardData);
+                editor.apply();
+                break;
+        }
     }
 
 
