@@ -7,7 +7,7 @@
     tools:context=".MainActivity"
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
-    android:id="@+id/converter_drawer_layout">
+    android:id="@+id/settings_drawer_layout">
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
@@ -22,7 +22,7 @@
         android:layout_gravity="start"/>
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/converter_toolbar"
+        android:id="@+id/settings_toolbar"
         android:layout_width="match_parent"
         android:layout_height="200dp">
     </androidx.appcompat.widget.Toolbar>
@@ -31,52 +31,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <Spinner
-            android:id="@+id/choice1"
-            android:layout_width="200sp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="68dp"
-            app:layout_constraintBottom_toTopOf="@+id/number_input"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <EditText
-            android:id="@+id/number_input"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="200dp"
-            android:ems="10"
-            android:text=""
-            app:layout_constraintBottom_toTopOf="@+id/convert_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Spinner
-            android:id="@+id/choice2"
+            android:id="@+id/language_choice"
             android:layout_width="200sp"
             android:layout_height="wrap_content"
             android:layout_marginTop="68dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/number_input" />
-
-        <TextView
-            android:id="@+id/result"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/convert_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/choice2" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.203" />
 
         <Button
-            android:id="@+id/convert_button"
+            android:id="@+id/apply_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/convert"
+            android:text="@string/apply"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -73,6 +73,12 @@ public class Activity extends AppCompatActivity implements View.OnClickListener,
                     startActivity(intent);
                 }
                 break;
+            case R.id.nav_settings:
+                if(this.getClass()!=SettingsActivity.class) {
+                    intent = new Intent(this,SettingsActivity.class);
+                    startActivity(intent);
+                }
+                break;
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);

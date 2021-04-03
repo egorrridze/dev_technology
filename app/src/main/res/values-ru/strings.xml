@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Converter</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="clear_history">Очистить историю</string>
+    <string name="convert">Перевести</string>
+    <string name="converter">Конвертер</string>
+    <string name="history_list">История переводов</string>
+    <string name="settings">Настройки</string>
+    <string name="apply">Принять</string>
+    <string name="communicate">Связаться</string>
+</resources>
