@@ -18,7 +18,7 @@ import java.util.Set;
 
 /** Represents main converter activity.
  * @author SmokedKoala
- * @version 0.4.0
+ * @version 0.4.1
  * @since 0.1.0
  */
 public class MainActivity extends Activity {
@@ -51,6 +51,8 @@ public class MainActivity extends Activity {
 
         preferences = getSharedPreferences("converter", Context.MODE_PRIVATE);
         cardData = preferences.getStringSet("cardData", new HashSet<>());
+
+        System.out.println(cardData);
 
         currentPage = R.id.nav_converter;
         drawerLayout = findViewById(R.id.converter_drawer_layout);

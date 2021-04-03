@@ -19,7 +19,7 @@ import java.util.Set;
 
 /** Represents history activity.
  * @author SmokedKoala
- * @version 0.4.0
+ * @version 0.4.1
  * @since 0.3.0
  */
 public class HistoryActivity extends Activity {
@@ -70,15 +70,19 @@ public class HistoryActivity extends Activity {
 
                 System.out.println(cardData);
                 SharedPreferences.Editor editor = preferences.edit();
-                editor.putStringSet("cardData",cardData);
+                editor.remove("cardData");
                 editor.apply();
                 break;
         }
     }
 
+    /**
+     * create data set for cards in recyclerView
+     */
     private void createList(){
-        for (Iterator<String> iterator = cardData.iterator(); iterator.hasNext();)
-            cardFillerList.add(new CardFiller(iterator.next()));
+        if (cardData.size()!=0)
+            for (Iterator<String> iterator = cardData.iterator(); iterator.hasNext();)
+                cardFillerList.add(new CardFiller(iterator.next()));
     }
 
 

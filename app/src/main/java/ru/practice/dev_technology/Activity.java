@@ -21,7 +21,7 @@ import java.util.Set;
 
 /** Represents prototype activity for others and controls same methods.
  * @author SmokedKoala
- * @version 0.4.0
+ * @version 0.4.1
  * @since 0.3.0
  */
 public class Activity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
@@ -37,7 +37,9 @@ public class Activity extends AppCompatActivity implements View.OnClickListener,
     protected Toolbar toolbar;
     /**Is used to keeping checked current activity in menu*/
     protected int currentPage;
+    /**Interface for accessing and modifying preference data returned*/
     protected SharedPreferences preferences;
+    /**A collection that contains no duplicate history data*/
     protected Set<String> cardData;
 
 
