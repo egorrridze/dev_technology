@@ -18,7 +18,7 @@ import java.util.Set;
 
 /** Represents main converter activity.
  * @author SmokedKoala
- * @version 0.4.1
+ * @version 0.4.2
  * @since 0.1.0
  */
 public class MainActivity extends Activity {
@@ -47,12 +47,13 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
         preferences = getSharedPreferences("converter", Context.MODE_PRIVATE);
         cardData = preferences.getStringSet("cardData", new HashSet<>());
+        applied_language = preferences.getString("applied_language","English");
 
-        System.out.println(cardData);
+        setLanguage();
+        setContentView(R.layout.activity_main);
 
         currentPage = R.id.nav_converter;
         drawerLayout = findViewById(R.id.converter_drawer_layout);

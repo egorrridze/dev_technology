@@ -2,6 +2,7 @@ package ru.practice.dev_technology;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -16,12 +17,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 
 /** Represents prototype activity for others and controls same methods.
  * @author SmokedKoala
- * @version 0.4.1
+ * @version 0.4.2
  * @since 0.3.0
  */
 public class Activity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
@@ -39,8 +41,10 @@ public class Activity extends AppCompatActivity implements View.OnClickListener,
     protected int currentPage;
     /**Interface for accessing and modifying preference data returned*/
     protected SharedPreferences preferences;
-    /**A collection that contains no duplicate history data*/
+    /**The collection that contains no duplicate history data*/
     protected Set<String> cardData;
+    /**String for chosen language */
+    protected  String applied_language;
 
 
     /**
@@ -112,5 +116,22 @@ public class Activity extends AppCompatActivity implements View.OnClickListener,
         actionBarDrawerToggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(currentPage);
+    }
+
+    /**
+     * Sets chosen language through configuration update
+     */
+    public void setLanguage(){
+        String language = "";
+        if (applied_language.equals("Русский"))
+            language = "ru";
+        else
+            language = "en";
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
     }
 }

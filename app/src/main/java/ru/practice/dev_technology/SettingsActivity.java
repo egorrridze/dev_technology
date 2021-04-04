@@ -17,6 +17,11 @@ import android.widget.Toast;
 import java.util.Arrays;
 import java.util.Locale;
 
+/** Represents prototype activity for others and controls same methods.
+ * @author SmokedKoala
+ * @version 0.4.2
+ * @since 0.4.0
+ */
 public class SettingsActivity extends Activity {
 
     /**Languages array */
@@ -28,7 +33,6 @@ public class SettingsActivity extends Activity {
     /**Button for applying setting changes */
     private Button applyButton;
 
-    private String applied_language;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +46,6 @@ public class SettingsActivity extends Activity {
         applyButton.setOnClickListener(this);
 
         languageChoice = findViewById(R.id.language_choice);
-        languageChoice.setSelection(Arrays.asList(languages).indexOf(applied_language));
-
 
         drawerLayout = findViewById(R.id.settings_drawer_layout);
         navigationView = findViewById(R.id.navigation_view);
@@ -54,18 +56,15 @@ public class SettingsActivity extends Activity {
                 android.R.layout.simple_spinner_item, languages);
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         languageChoice.setAdapter(spinnerArrayAdapter);
+        languageChoice.setSelection(Arrays.asList(languages).indexOf(applied_language));
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.apply_button:
-                if (languageChoice.getSelectedItem()=="Русский") {
-                    setLanguage("ru");
-                }
-                if (languageChoice.getSelectedItem()=="English") {
-                    setLanguage("en");
-                }
+                applied_language = languageChoice.getSelectedItem().toString();
+                setLanguage();
 
                 Intent intent = new Intent(this,SettingsActivity.class);
                 applied_language = languageChoice.getSelectedItem().toString();
@@ -77,14 +76,5 @@ public class SettingsActivity extends Activity {
         }
     }
 
-    public void setLanguage(String language){
-        Locale locale = new Locale(language);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config,
-                getBaseContext().getResources().getDisplayMetrics());
-    }
 
-//    public void
 }
