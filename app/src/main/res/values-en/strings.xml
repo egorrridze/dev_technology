@@ -9,4 +9,6 @@
     <string name="settings">Settings</string>
     <string name="apply">Apply</string>
     <string name="communicate">Communicate</string>
+    <string name="value_number">value number</string>
+    <string name="error_message">enter number of first value</string>
 </resources>

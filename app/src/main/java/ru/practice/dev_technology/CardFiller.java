@@ -2,17 +2,18 @@ package ru.practice.dev_technology;
 
 public class CardFiller {
     /**Strings for the card representing converter result */
-    private String cardValue;
+    private String result;
 
-    public CardFiller(String converter_result) {
-        cardValue = converter_result;
-        }
 
-    public String getCardValue() {
-        return cardValue;
+    public CardFiller(String result) {
+        this.result = result;
     }
 
-    public void setCardValue(String cardValue) {
-        this.cardValue = cardValue;
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
     }
 }

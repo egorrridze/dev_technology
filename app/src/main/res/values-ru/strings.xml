@@ -9,4 +9,6 @@
     <string name="settings">Настройки</string>
     <string name="apply">Принять</string>
     <string name="communicate">Связаться</string>
+    <string name="value_number">количество</string>
+    <string name="error_message">введите количество первой величины</string>
 </resources>

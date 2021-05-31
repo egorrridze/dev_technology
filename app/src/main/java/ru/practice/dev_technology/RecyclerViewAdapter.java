@@ -56,8 +56,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
      */
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-        holder.myTextView.setText(mData.get(position).getCardValue());
-
+        holder.result.setText(mData.get(position).getResult());
     }
 
 
@@ -71,12 +70,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder  {
-        TextView myTextView;
+        TextView result;
 
         ViewHolder(final View itemView) {
             super(itemView);
-            myTextView = itemView.findViewById(R.id.result_text);
-
+            result = itemView.findViewById(R.id.equally);
         }
     }
 

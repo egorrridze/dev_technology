@@ -49,6 +49,7 @@
             android:layout_marginBottom="200dp"
             android:ems="10"
             android:text=""
+            android:hint="@string/value_number"
             app:layout_constraintBottom_toTopOf="@+id/convert_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -65,6 +66,7 @@
 
         <TextView
             android:id="@+id/result"
+            android:text=""
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@+id/convert_button"

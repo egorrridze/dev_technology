@@ -31,11 +31,10 @@ public class MainActivity extends Activity {
     private EditText inputNum;
     /**Test array */
     private String[] data = {"one", "two", "three", "four", "five"};
-    private int counter = 0;
     /**Provide views for an AdapterView. */
     private ArrayAdapter<String> spinnerArrayAdapter;
     /**Shows the converter result */
-    private TextView result;
+    private TextView secondValueNum;
 
 
 
@@ -65,7 +64,8 @@ public class MainActivity extends Activity {
         convertButton.setOnClickListener(this);
         inputNum = findViewById(R.id.number_input);
         inputNum.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
-        result = findViewById(R.id.result);
+
+        secondValueNum = findViewById(R.id.result);
 
         navigationMenuCreation();
 
@@ -80,13 +80,23 @@ public class MainActivity extends Activity {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.convert_button:
+                if (!inputNum.getText().toString().equals("")) {
+                    StringBuilder result = new StringBuilder();
+                    result.append(inputNum.getText());
+                    result.append(" ");
+                    result.append(choice1.getSelectedItem());
+                    result.append(" = ");
+                    result.append(secondValueNum.getText());
+                    result.append(" ");
+                    result.append(choice2.getSelectedItem());
+                    cardData.add(result.toString());
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putStringSet("cardData",cardData);
+                    editor.apply();
+                } else {
+                    Toast.makeText(this,R.string.error_message,Toast.LENGTH_SHORT).show();
+                }
 
-                cardData.add("result "+ counter);
-                counter++;
-
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putStringSet("cardData",cardData);
-                editor.apply();
                 break;
         }
     }

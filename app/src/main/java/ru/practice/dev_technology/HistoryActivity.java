@@ -53,7 +53,7 @@ public class HistoryActivity extends Activity {
         cardFillerList = new ArrayList<>();
         createList();
         recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
         recyclerViewAdapter = new RecyclerViewAdapter(this, cardFillerList);
         recyclerView.setAdapter(recyclerViewAdapter);
 
@@ -67,8 +67,6 @@ public class HistoryActivity extends Activity {
                 
                 cardData.clear();
                 recyclerViewAdapter.clearRecyclerView();
-
-                System.out.println(cardData);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.remove("cardData");
                 editor.apply();
@@ -80,9 +78,10 @@ public class HistoryActivity extends Activity {
      * create data set for cards in recyclerView
      */
     private void createList(){
-        if (cardData.size()!=0)
-            for (Iterator<String> iterator = cardData.iterator(); iterator.hasNext();)
+        if (cardData.size()!=0) {
+            for (Iterator<String> iterator = cardData.iterator(); iterator.hasNext(); )
                 cardFillerList.add(new CardFiller(iterator.next()));
+        }
     }
 
 
