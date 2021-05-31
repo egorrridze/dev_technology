@@ -1,0 +1,78 @@
+[33mcommit dd72df1d33637941876aea7989979d598b7a31b6[m[33m ([m[1;36mHEAD[m[33m)[m
+Author: Egor Belyaev <belyaev.eda@gmail.com>
+Date:   Tue Mar 16 00:25:25 2021 +0300
+
+    trying to fix bug with schema-mysql
+
+[33mcommit 7f9e00ee9546b24641e5a5a876a5182400aa970b[m
+Author: Egor Belyaev <belyaev.eda@gmail.com>
+Date:   Tue Mar 16 00:23:15 2021 +0300
+
+    Adding beginning od backend dev
+
+[33mcommit c1b9467734bda96f5a1e469fba462b7be7166235[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: SmokedKoala <k.azarov@inbox.ru>
+Date:   Mon Mar 8 22:14:42 2021 +0300
+
+    fix
+    
+    input type fix
+
+[33mcommit 6f0ed5c7dedbe6900fb3ea7905182e06afb2ef5a[m
+Author: SmokedKoala <k.azarov@inbox.ru>
+Date:   Mon Mar 8 21:00:17 2021 +0300
+
+    Spinner
+    
+    Spinner works!
+
+[33mcommit 1a8483d95f142443a66d8617f32b65e5b38a9d4b[m
+Author: SmokedKoala <k.azarov@inbox.ru>
+Date:   Tue Mar 2 11:52:06 2021 +0300
+
+    README changed in branch
+
+[33mcommit 43bc28293cf91b6c0a46193ce141fdb5feec05a2[m
+Author: SmokedKoala <k.azarov@inbox.ru>
+Date:   Tue Mar 2 11:50:56 2021 +0300
+
+    README changed in branch
+
+[33mcommit 14568df5691fe60de688352cce95e871adb2b70c[m
+Author: SmokedKoala <k.azarov@inbox.ru>
+Date:   Tue Mar 2 11:14:24 2021 +0300
+
+    README returned
+
+[33mcommit b6a79b6cd0ea5d8f55a06fd1eecebd080cd87dda[m
+Author: SmokedKoala <k.azarov@inbox.ru>
+Date:   Tue Mar 2 09:36:23 2021 +0300
+
+    project version update
+
+[33mcommit 8789951a452e1a81982226b9d4fa9b73a0662172[m
+Author: SmokedKoala <k.azarov@inbox.ru>
+Date:   Thu Feb 25 15:51:41 2021 +0300
+
+    android front-end start
+
+[33mcommit 1b6e8b4593ecf46436f7dc9087815c85ca8fbd1d[m
+Merge: 0506679 a90ec87
+Author: SmokedKoala <56535539+SmokedKoala@users.noreply.github.com>
+Date:   Tue Feb 16 18:01:24 2021 +0300
+
+    Merge pull request #1 from egorrridze/android-branch
+    
+    start
+
+[33mcommit a90ec87e3c4f7426d8470e7776c403cfa8a5db74[m
+Author: SmokedKoala <k.azarov@inbox.ru>
+Date:   Tue Feb 16 17:58:29 2021 +0300
+
+    start
+
+[33mcommit 0506679791a0d18a18d05609ae8be57bca942f6e[m
+Author: SmokedKoala <k.azarov@inbox.ru>
+Date:   Tue Feb 16 17:49:12 2021 +0300
+
+    Initial commit
