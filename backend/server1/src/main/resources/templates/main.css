@@ -1,6 +1,7 @@
 ﻿* {
     margin: 0;
     padding: 0;
+    font-family: 'Roboto', sans-serif;
 }
 
 header {
@@ -19,7 +20,7 @@ header {
     grid-row-gap: 3rem;
 }
 
-button {
+.buttonValue {
     background-color: white;
     border: solid 0.25rem #9932CC;
     width: 18rem;
@@ -29,15 +30,43 @@ button {
     font-size: 1rem;
 }
 
+.buttonCalc {
+    background-color: white;
+    border: solid 0.25rem #9932CC;
+    width: 10rem;
+    height: 3rem;
+    font-family: 'Roboto', sans-serif;
+    margin: auto;
+    justify-content: center;
+    border-radius: 4rem;
+    font-size: 1rem;
+}
+
+.parentButton{
+    margin-top: 4rem;
+    display: flex;
+}
+
+.result{
+    margin-top: 3rem;
+    font-size: 3rem;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
 .inputModule {
     margin-top: 5rem;
-    margin-left: 15rem;
-    margin-right: 15rem;
+    margin-left: 20rem;
+    margin-right: 20rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
 
+.select{
+    font-size: 2rem;
+}
+
 .inputText {
-    
+    text-align: center;
 }
 

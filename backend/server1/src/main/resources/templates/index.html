@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <link href="main.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
         <title>Title</title>
     </head>
     <body>
@@ -10,60 +12,78 @@
             
         </header>
         <div class = "buttons">
-            <button onclick=fillSelects() class="button">Масса</button>
-            <button class="button" id = "kek">Объем</button>
-            <button class="button">Длина</button>
-            <button class="button">Скорость</button>
-            <button class="button">Температура</button>
-            <button class="button">Время</button>
+            <button onclick=fillSelects("mass") class="buttonValue">Масса</button>
+            <button onclick=fillSelects("volume") class="buttonValue">Объем</button>
+            <button onclick=fillSelects("length") class="buttonValue">Длина</button>
+            <button onclick=fillSelects("speed") class="buttonValue">Скорость</button>
+            <button onclick=fillSelects() class="buttonValue">Температура</button>
+            <button onclick=fillSelects("time") class="buttonValue">Время</button>
         </div>
         <div class = "inputModule">
-            <select id="leftSelect1"> 
+            <select id="leftSelectButton" class ="select"> 
             </select>
             <div class = "inputText">
-                <input type="text">
+                <input type="number" id = "inputNumber">
             </div>
-            <select id="rightSelect1"> 
-            </select>
+            <select id="rightSelectButton" class ="select"> 
+            </select> 
         </div>
+        <div class="parentButton">
+            <button onclick=sendRequest() class="buttonCalc">Вычислить</button>
+        </div>
+        <p class="result" id = "result">
+            Результат:
+        </p>
+        
     </body>
 </html>
 
 <script>
-    function fillSelects() {
-        let array;
+    var array = null;
+    function fillSelects(string) {
         var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
-        xmlhttp.open("GET", "https://trppconverter1.herokuapp.com/getValues?type=длина", true);
+        xmlhttp.open("GET", "https://trppconverter1.herokuapp.com/getValues?type=" + string, true);
         xmlhttp.setRequestHeader("Content-Type", "application/json");
         xmlhttp.responseType = 'json';
         xmlhttp.send();
-        /*xmlhttp.onload = function() {
+        xmlhttp.onload = function() {
+            
+            var leftSelect = document.getElementById("leftSelectButton");
+            var rightSelect = document.getElementById("rightSelectButton");
+            
+            if (array != null){
+                leftSelect.innerHTML = null;
+                rightSelect.innerHTML = null;
+            }
+            
             array = xmlhttp.response;
-            var t = document.getElementById("kek");
-            t.innerText = array[1];
-            alert(array.message); // Привет, мир!
-        };*/
+            for (var i = 0; i < array.length; i++) {
+                var leftOption = document.createElement("option");
+                var rightOption = document.createElement("option");
+                leftOption.setAttribute("value", array[i]);
+                rightOption.setAttribute("value", array[i]);
+                leftOption.text = array[i];
+                rightOption.text = array[i];
+                leftSelect.appendChild(rightOption);
+                rightSelect.appendChild(leftOption);
+            }
+        };
         xmlhttp.onerror = function() { // происходит, только когда запрос совсем не получилось выполнить
             alert(`Ошибка соединения`);
         };
-        
-        var leftSelect = document.getElementById("leftSelect1");
-        var rightSelect = document.getElementById("rightSelect1");
-        //Create array of options to be added
-        
-        
-        //Create and append the options
-        for (var i = 0; i < array.length; i++) {
-            var leftOption = document.createElement("option");
-            var rightOption = document.createElement("option");
-            leftOption.setAttribute("value", array[i]);
-            rightOption.setAttribute("value", array[i]);
-            leftOption.text = array[i];
-            rightOption.text = array[i];
-            leftSelect.appendChild(rightOption);
-            rightSelect.appendChild(leftOption);
+    }
+    
+    function sendRequest(){
+        var http = new XMLHttpRequest();   // new HttpRequest instance
+        /*var leftPart = document.getElementById("leftSelectButton").options[document.getElementById("leftSelectButton").selectedIndex].value;
+        var leftPart = document.getElementById("leftSelectButton");
+        var leftPartvalue = leftPart.options[leftPart.selectedIndex].value;*/
+        http.open("GET", "https://trppconverter1.herokuapp.com/convert?from=" + document.getElementById("leftSelectButton").options[document.getElementById("leftSelectButton").selectedIndex].value + "&num=" + document.getElementById("inputNumber").value + "&to="  + document.getElementById("rightSelectButton").options[document.getElementById("rightSelectButton").selectedIndex].value, true);
+        http.setRequestHeader("Content-Type", "application/json");
+        http.send();
+        http.onload = function () {
+            document.getElementById("result").innerText = "Результат: " + http.response;
         }
-        leftSelect.remove(1);
     }
     
     
