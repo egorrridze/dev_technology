@@ -1,0 +1,43 @@
+﻿﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    border-radius: 0 0 50rem 50rem;
+    height: 5rem;
+    background-color: #9932CC;
+}
+
+.buttons {
+    margin-top: 3rem;
+    margin-left: 15rem;
+    margin-right: 15rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 0rem;
+    grid-row-gap: 3rem;
+}
+
+button {
+    background-color: white;
+    border: solid 0.25rem #9932CC;
+    width: 18rem;
+    height: 5rem;
+    margin: auto;
+    border-radius: 4rem;
+    font-size: 1rem;
+}
+
+.inputModule {
+    margin-top: 5rem;
+    margin-left: 15rem;
+    margin-right: 15rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.inputText {
+    
+}
+
