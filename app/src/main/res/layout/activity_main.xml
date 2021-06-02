@@ -42,14 +42,24 @@
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <Spinner
+            android:id="@+id/values_choice"
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="144dp"
+            app:layout_constraintBottom_toTopOf="@+id/number_input"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.407"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <EditText
             android:id="@+id/number_input"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="49dp"
             android:layout_marginBottom="200dp"
             android:ems="10"
-            android:text=""
             android:hint="@string/value_number"
+            android:text=""
             app:layout_constraintBottom_toTopOf="@+id/convert_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -84,6 +94,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.762" />
+
+        <ImageButton
+            android:id="@+id/download_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/download"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.788"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.147" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

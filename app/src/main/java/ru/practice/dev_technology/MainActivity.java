@@ -9,12 +9,20 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 /** Represents main converter activity.
  * @author SmokedKoala
@@ -24,17 +32,22 @@ import java.util.Set;
 public class MainActivity extends Activity {
 
     /**Spinners to choose value types from */
-    private Spinner choice1, choice2;
+    private Spinner choice1, choice2, values;
     /**Button for starting converting process */
     private Button convertButton;
     /**Field for number input*/
     private EditText inputNum;
-    /**Test array */
-    private String[] data = {"one", "two", "three", "four", "five"};
+    /**Value types array */
+    private String[] value_types = {"mass", "length"};
+    private String[] first_values = {};
+    private String[] second_values = {};
     /**Provide views for an AdapterView. */
-    private ArrayAdapter<String> spinnerArrayAdapter;
+    private ArrayAdapter<String> spinnerArrayAdapterValues, spinnerArrayAdapterChoice1, spinnerArrayAdapterChoice2;
     /**Shows the converter result */
     private TextView secondValueNum;
+    private ImageButton downloadButton;
+    private HttpURLConnection httpURLConnection;
+    private String query;
 
 
 
@@ -58,10 +71,13 @@ public class MainActivity extends Activity {
         drawerLayout = findViewById(R.id.converter_drawer_layout);
         navigationView = findViewById(R.id.navigation_view);
         toolbar = findViewById(R.id.converter_toolbar);
+        values = findViewById(R.id.values_choice);
         choice1 = findViewById(R.id.choice1);
         choice2 = findViewById(R.id.choice2);
         convertButton = findViewById(R.id.convert_button);
         convertButton.setOnClickListener(this);
+        downloadButton = findViewById(R.id.download_button);
+        downloadButton.setOnClickListener(this);
         inputNum = findViewById(R.id.number_input);
         inputNum.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 
@@ -69,11 +85,21 @@ public class MainActivity extends Activity {
 
         navigationMenuCreation();
 
-        spinnerArrayAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, data);
-        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        choice1.setAdapter(spinnerArrayAdapter);
-        choice2.setAdapter(spinnerArrayAdapter);
+        spinnerArrayAdapterValues = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, value_types);
+        spinnerArrayAdapterValues.setDropDownViewResource(android.R.layout.simple_spinner_item);
+
+        spinnerArrayAdapterChoice1 = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, first_values);
+        spinnerArrayAdapterChoice1.setDropDownViewResource(android.R.layout.simple_spinner_item);
+
+        spinnerArrayAdapterChoice2 = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, second_values);
+        spinnerArrayAdapterChoice2.setDropDownViewResource(android.R.layout.simple_spinner_item);
+
+        values.setAdapter(spinnerArrayAdapterValues);
+        choice1.setAdapter(spinnerArrayAdapterChoice1);
+        choice2.setAdapter(spinnerArrayAdapterChoice2);
     }
 
     @Override
@@ -96,8 +122,13 @@ public class MainActivity extends Activity {
                 } else {
                     Toast.makeText(this,R.string.error_message,Toast.LENGTH_SHORT).show();
                 }
-
                 break;
+            case R.id.download_button:
+                DownloadThread thread = new DownloadThread(query, values,httpURLConnection);
+                System.out.println(thread.execute());
+//                second_values = (thread.doInBackground());
+//                System.out.println(first_values);
+               break;
         }
     }
 
