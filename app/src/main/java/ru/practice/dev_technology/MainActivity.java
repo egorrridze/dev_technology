@@ -24,35 +24,54 @@ import java.net.URL;
 import java.util.HashSet;
 import java.util.List;
 
-/** Represents main converter activity.
+/**
+ * Represents main converter activity.
+ *
  * @author SmokedKoala
  * @version 0.4.2
  * @since 0.1.0
  */
 public class MainActivity extends Activity {
 
-    /**Spinners to choose value types from */
-    private Spinner choice1, choice2, values;
-    /**Button for starting converting process */
-    private Button convertButton;
-    /**Field for number input*/
-    private EditText inputNum;
-    /**Value types array */
-    private String[] value_types = {"mass", "length"};
-    private String[] first_values = {};
-    private String[] second_values = {};
-    /**Provide views for an AdapterView. */
-    private ArrayAdapter<String> spinnerArrayAdapterValues, spinnerArrayAdapterChoice1, spinnerArrayAdapterChoice2;
-    /**Shows the converter result */
-    private TextView secondValueNum;
-    private ImageButton downloadButton;
-    private HttpURLConnection httpURLConnection;
-    private String query;
-
+    /**
+     * Spinners to choose value types from
+     */
+    Spinner choice1, choice2, values;
+    /**
+     * Button for starting converting process
+     */
+    Button convertButton;
+    /**
+     * Field for number input
+     */
+    EditText inputNum;
+    /**
+     * Value types array
+     */
+    String[] value_types = {"mass", "length", "volume","speed", "time"};
+    String[] mass = {"кг", "г", "ц", "т", "фунтов"};
+    String[] length = {"м", "км", "см", "мм", "дюймов", "миль"};
+    String[] volume = {"кубм", "л", "кубсм", "пинт"};
+    String[] speed = {"км_ч", "м_с", "узлов", "миль_ч"};
+    String[] time = {"с", "мин", "час", "дней", "лет"};
+    String[] first_values = {};
+    String[] second_values = {};
+    /**
+     * Provide views for an AdapterView.
+     */
+    ArrayAdapter<String> spinnerArrayAdapterValues, spinnerArrayAdapterChoice1, spinnerArrayAdapterChoice2;
+    /**
+     * Shows the converter result
+     */
+    TextView secondValueNum;
+    ImageButton downloadButton;
+    HttpURLConnection httpURLConnection;
+    String query;
 
 
     /**
      * create main converter activity
+     *
      * @param savedInstanceState saved variables from previous activity launch
      */
     @SuppressLint("NonConstantResourceId")
@@ -62,7 +81,7 @@ public class MainActivity extends Activity {
 
         preferences = getSharedPreferences("converter", Context.MODE_PRIVATE);
         cardData = preferences.getStringSet("cardData", new HashSet<>());
-        applied_language = preferences.getString("applied_language","English");
+        applied_language = preferences.getString("applied_language", "English");
 
         setLanguage();
         setContentView(R.layout.activity_main);
@@ -104,34 +123,62 @@ public class MainActivity extends Activity {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.convert_button:
                 if (!inputNum.getText().toString().equals("")) {
-                    StringBuilder result = new StringBuilder();
-                    result.append(inputNum.getText());
-                    result.append(" ");
-                    result.append(choice1.getSelectedItem());
-                    result.append(" = ");
-                    result.append(secondValueNum.getText());
-                    result.append(" ");
-                    result.append(choice2.getSelectedItem());
-                    cardData.add(result.toString());
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.putStringSet("cardData",cardData);
-                    editor.apply();
+                    DownloadThread downloadThread = new DownloadThread(this,query,values,httpURLConnection,choice1.getSelectedItem().toString(),choice2.getSelectedItem().toString(),inputNum.getText().toString());
+                    downloadThread.execute();
+//                    secondValueNum.setText(downloadThread);
+
+//                        StringBuilder result = new StringBuilder();
+//                        result.append(inputNum.getText());
+//                        result.append(" ");
+//                        result.append(choice1.getSelectedItem());
+//                        result.append(" = ");
+//                        result.append(secondValueNum.getText());
+//                        result.append(" ");
+//                        result.append(choice2.getSelectedItem());
+//                        cardData.add(result.toString());
+//                        SharedPreferences.Editor editor = preferences.edit();
+//                        editor.putStringSet("cardData", cardData);
+//                        editor.apply();
                 } else {
-                    Toast.makeText(this,R.string.error_message,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.error_message, Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.download_button:
-                DownloadThread thread = new DownloadThread(query, values,httpURLConnection);
-                System.out.println(thread.execute());
-//                second_values = (thread.doInBackground());
-//                System.out.println(first_values);
-               break;
+                String[] chosen_array = null;
+                switch (values.getSelectedItem().toString()){
+                    case "mass":
+                        chosen_array = mass;
+                        break;
+                    case "length":
+                        chosen_array = length;
+                        break;
+                    case "time":
+                        chosen_array = time;
+                        break;
+                    case "volume":
+                        chosen_array = volume;
+                        break;
+                    case "speed":
+                        chosen_array = speed;
+                        break;
+                }
+
+                spinnerArrayAdapterChoice1 = new ArrayAdapter<>(this,
+                        android.R.layout.simple_spinner_item, chosen_array);
+                spinnerArrayAdapterChoice1.setDropDownViewResource(android.R.layout.simple_spinner_item);
+
+                spinnerArrayAdapterChoice2 = new ArrayAdapter<>(this,
+                        android.R.layout.simple_spinner_item, chosen_array);
+                spinnerArrayAdapterChoice2.setDropDownViewResource(android.R.layout.simple_spinner_item);
+
+                choice1.setAdapter(spinnerArrayAdapterChoice1);
+                choice2.setAdapter(spinnerArrayAdapterChoice2);
+                break;
         }
     }
-
 
 
 }

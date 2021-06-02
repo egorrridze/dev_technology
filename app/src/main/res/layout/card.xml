@@ -8,9 +8,11 @@
     android:padding="10dp">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="300dp"
-        android:layout_height="86dp"
+        android:layout_width="282dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.589"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -32,7 +34,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

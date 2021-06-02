@@ -11,4 +11,5 @@
     <string name="communicate">Связаться</string>
     <string name="value_number">количество</string>
     <string name="error_message">введите количество первой величины</string>
+    <string name="internet_connection_error">ошибка подключения к интернету</string>
 </resources>
